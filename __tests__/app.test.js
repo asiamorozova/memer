@@ -1,5 +1,5 @@
 const connect = require('../lib/utils/connect');
-
+const mongoose = require('mongoose');
 const request = require('supertest');
 const app = require('../lib/app');
 
@@ -7,6 +7,9 @@ beforeAll(() => {
   connect();
 });
 
+afterAll(() => {
+  return mongoose.connection.close();
+});
 
 describe('meme routes', () => {
   it('creates a meme', async() => {
